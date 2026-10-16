@@ -1,0 +1,7 @@
+# zigmem -> Codex (phase 7). Paste into ~/.codex/config.toml yourself; zigmem never writes it.
+# The bearer token stays in your environment (ZIGMEM_TOKEN), never in this file.
+# Start Codex with:  ZIGMEM_TOKEN="$(cat ~/.config/zigmem/codex.token)" codex
+# `zigmem connect codex --print` prints this with your paths filled in.
+[mcp_servers.zigmem]
+url = "http://127.0.0.1:8470/mcp"
+bearer_token_env_var = "ZIGMEM_TOKEN"

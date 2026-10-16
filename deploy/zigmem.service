@@ -1,0 +1,25 @@
+# zigmem memory hub — systemd USER unit (STAGED by phase 8; installed only by deploy/deploy.sh).
+# SHADOW mode: the hub runs and holds an imported copy of the memory stores; no live seat reads from it.
+# 127.0.0.1 only. Data + token table live in %h/zigmem_data (dir 0700, files 0600 via UMask).
+# deploy.sh renders this file (port / data dir) into ~/.config/systemd/user/zigmem.service and records its sha;
+# rollback.sh removes exactly that file. Never edit the installed copy by hand (rollback then refuses to delete it).
+[Unit]
+Description=zigmem memory hub (shadow, 127.0.0.1 only)
+Documentation=file://%h/zigmem/deploy/DEPLOY.md
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+Environment=ZIGMEM_HOME=@DATA@
+ExecStart=@DATA@/bin/zigmem serve --home @DATA@ --port @PORT@ --bind 127.0.0.1 --extract none
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=yes
+LimitNOFILE=4096
+KillSignal=SIGTERM
+TimeoutStopSec=20
+
+[Install]
+WantedBy=default.target

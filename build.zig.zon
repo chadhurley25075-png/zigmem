@@ -1,0 +1,8 @@
+.{
+    .name = .zigmem,
+    .version = "0.0.1",
+    .fingerprint = 0x422e8ff6fc4c946a,
+    .minimum_zig_version = "0.17.0",
+    .dependencies = .{},
+    .paths = .{ "build.zig", "build.zig.zon", "src" },
+}

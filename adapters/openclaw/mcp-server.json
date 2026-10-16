@@ -1,0 +1,5 @@
+{
+  "url": "http://127.0.0.1:8470/mcp",
+  "transport": "streamable-http",
+  "headers": { "Authorization": "Bearer <contents of ~/.config/zigmem/openclaw.token>" }
+}

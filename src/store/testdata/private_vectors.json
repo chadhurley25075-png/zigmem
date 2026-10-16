@@ -1,0 +1,287 @@
+{
+"mark": "[private — not kept]",
+"cases": [
+{
+"in": "plain text",
+"strip": "plain text",
+"refuse": false
+},
+{
+"in": "",
+"strip": "",
+"refuse": false
+},
+{
+"in": "a <private>x</private> b",
+"strip": "a [private — not kept] b",
+"refuse": true
+},
+{
+"in": "x < PRIVATE >y</ private > z",
+"strip": "x [private — not kept] z",
+"refuse": true
+},
+{
+"in": "keep <private>forever",
+"strip": "keep [private — not kept]",
+"refuse": true
+},
+{
+"in": "<private>a</private> mid <private>b</private>",
+"strip": "[private — not kept] mid [private — not kept]",
+"refuse": true
+},
+{
+"in": "<private>a<private>b</private>c</private>",
+"strip": "[private — not kept]c</private>",
+"refuse": true
+},
+{
+"in": "a </private> b",
+"strip": "a </private> b",
+"refuse": false
+},
+{
+"in": "<privatex>no</privatex>",
+"strip": "<privatex>no</privatex>",
+"refuse": false
+},
+{
+"in": "<pri vate>no</pri vate>",
+"strip": "<pri vate>no</pri vate>",
+"refuse": false
+},
+{
+"in": "<private\n>multi\nline</private\t>",
+"strip": "[private — not kept]",
+"refuse": true
+},
+{
+"in": "< private >nbsp</private>",
+"strip": "[private — not kept]",
+"refuse": true
+},
+{
+"in": "< private>emspace</private>",
+"strip": "[private — not kept]",
+"refuse": true
+},
+{
+"in": "<PrIvAtE>mixed</pRiVaTe> tail",
+"strip": "[private — not kept] tail",
+"refuse": true
+},
+{
+"in": "<İPRIVATE>dotted</private>",
+"strip": "<İPRIVATE>dotted</private>",
+"refuse": false
+},
+{
+"in": "<prıvate>dotless</private>",
+"strip": "[private — not kept]",
+"refuse": true
+},
+{
+"in": "<prİvate>dotted-I</private>",
+"strip": "[private — not kept]",
+"refuse": true
+},
+{
+"in": "<\u001fprivate>unitsep</private>",
+"strip": "[private — not kept]",
+"refuse": true
+},
+{
+"in": "<private>nel</private>",
+"strip": "[private — not kept]",
+"refuse": true
+},
+{
+"in": "a<private>b</private>c<private>d",
+"strip": "a[private — not kept]c[private — not kept]",
+"refuse": true
+},
+{
+"in": "<private></private>",
+"strip": "[private — not kept]",
+"refuse": true
+},
+{
+"in": "<<private>>x</private>>",
+"strip": "<[private — not kept]>",
+"refuse": true
+},
+{
+"in": "été <private>café</private> — ok",
+"strip": "été [private — not kept] — ok",
+"refuse": true
+},
+{
+"in": "<private>one</private><private>two",
+"strip": "[private — not kept][private — not kept]",
+"refuse": true
+},
+{
+"in": "text with < and > but no tag",
+"strip": "text with < and > but no tag",
+"refuse": false
+},
+{
+"in": "<private >sp</private >",
+"strip": "[private — not kept]",
+"refuse": true
+},
+{
+"in": "< / private>",
+"strip": "< / private>",
+"refuse": false
+},
+{
+"in": "<private>x< /private>y",
+"strip": "[private — not kept]y",
+"refuse": true
+},
+{
+"in": "<private>x</ private\n>y",
+"strip": "[private — not kept]y",
+"refuse": true
+},
+{
+"in": "emoji 😀 <private>😀</private>",
+"strip": "emoji 😀 [private — not kept]",
+"refuse": true
+},
+{
+"line": "{\"c\": \"plain text\"}",
+"out": "{\"c\": \"plain text\"}"
+},
+{
+"line": "{\"c\": \"\"}",
+"out": "{\"c\": \"\"}"
+},
+{
+"line": "{\"c\": \"a <private>x</private> b\"}",
+"out": "{\"c\": \"a [private — not kept] b\"}"
+},
+{
+"line": "{\"c\": \"x < PRIVATE >y</ private > z\"}",
+"out": "{\"c\": \"x [private — not kept] z\"}"
+},
+{
+"line": "{\"c\": \"keep <private>forever\"}",
+"out": ""
+},
+{
+"line": "{\"c\": \"<private>a</private> mid <private>b</private>\"}",
+"out": "{\"c\": \"[private — not kept] mid [private — not kept]\"}"
+},
+{
+"line": "{\"c\": \"<private>a<private>b</private>c</private>\"}",
+"out": "{\"c\": \"[private — not kept]c</private>\"}"
+},
+{
+"line": "{\"c\": \"a </private> b\"}",
+"out": "{\"c\": \"a </private> b\"}"
+},
+{
+"line": "{\"c\": \"<privatex>no</privatex>\"}",
+"out": "{\"c\": \"<privatex>no</privatex>\"}"
+},
+{
+"line": "{\"c\": \"<pri vate>no</pri vate>\"}",
+"out": "{\"c\": \"<pri vate>no</pri vate>\"}"
+},
+{
+"line": "{\"c\": \"<private\\n>multi\\nline</private\\t>\"}",
+"out": "{\"c\": \"<private\\n>multi\\nline</private\\t>\"}"
+},
+{
+"line": "{\"c\": \"<\\u00a0private\\u00a0>nbsp</private>\"}",
+"out": "{\"c\": \"<\\u00a0private\\u00a0>nbsp</private>\"}"
+},
+{
+"line": "{\"c\": \"<\\u2003private>emspace</private>\"}",
+"out": "{\"c\": \"<\\u2003private>emspace</private>\"}"
+},
+{
+"line": "{\"c\": \"<PrIvAtE>mixed</pRiVaTe> tail\"}",
+"out": "{\"c\": \"<PrIvAtE>mixed</pRiVaTe> tail\"}"
+},
+{
+"line": "{\"c\": \"<\\u0130PRIVATE>dotted</private>\"}",
+"out": "{\"c\": \"<\\u0130PRIVATE>dotted</private>\"}"
+},
+{
+"line": "{\"c\": \"<pr\\u0131vate>dotless</private>\"}",
+"out": "{\"c\": \"<pr\\u0131vate>dotless</private>\"}"
+},
+{
+"line": "{\"c\": \"<pr\\u0130vate>dotted-I</private>\"}",
+"out": "{\"c\": \"<pr\\u0130vate>dotted-I</private>\"}"
+},
+{
+"line": "{\"c\": \"<\\u001fprivate>unitsep</private>\"}",
+"out": "{\"c\": \"<\\u001fprivate>unitsep</private>\"}"
+},
+{
+"line": "{\"c\": \"<\\u0085private>nel</private>\"}",
+"out": "{\"c\": \"<\\u0085private>nel</private>\"}"
+},
+{
+"line": "{\"c\": \"a<private>b</private>c<private>d\"}",
+"out": ""
+},
+{
+"line": "{\"c\": \"<private></private>\"}",
+"out": "{\"c\": \"[private — not kept]\"}"
+},
+{
+"line": "{\"c\": \"<<private>>x</private>>\"}",
+"out": "{\"c\": \"<[private — not kept]>\"}"
+},
+{
+"line": "{\"c\": \"\\u00e9t\\u00e9 <private>caf\\u00e9</private> \\u2014 ok\"}",
+"out": "{\"c\": \"\\u00e9t\\u00e9 [private — not kept] \\u2014 ok\"}"
+},
+{
+"line": "{\"c\": \"<private>one</private><private>two\"}",
+"out": ""
+},
+{
+"line": "{\"c\": \"text with < and > but no tag\"}",
+"out": "{\"c\": \"text with < and > but no tag\"}"
+},
+{
+"line": "{\"c\": \"<private >sp</private >\"}",
+"out": "{\"c\": \"[private — not kept]\"}"
+},
+{
+"line": "{\"c\": \"< / private>\"}",
+"out": "{\"c\": \"< / private>\"}"
+},
+{
+"line": "{\"c\": \"<private>x< /private>y\"}",
+"out": "{\"c\": \"[private — not kept]y\"}"
+},
+{
+"line": "{\"c\": \"<private>x</ private\\n>y\"}",
+"out": ""
+},
+{
+"line": "{\"c\": \"emoji \\ud83d\\ude00 <private>\\ud83d\\ude00</private>\"}",
+"out": "{\"c\": \"emoji \\ud83d\\ude00 [private — not kept]\"}"
+},
+{
+"line": "{\"c\": \"a <private>leak\"}",
+"out": ""
+},
+{
+"line": "{\"a\": 1}",
+"out": "{\"a\": 1}"
+},
+{
+"line": "{\"m\": \"go <private>pin 4455\\nand \\\"q\\\"</private> thanks\"}",
+"out": "{\"m\": \"go [private — not kept] thanks\"}"
+}
+]
+}

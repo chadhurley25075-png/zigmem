@@ -1,0 +1,10 @@
+zig-out/
+.zig-cache/
+scratch/
+receipts/
+*.db
+*.db-wal
+*.db-shm
+*.local.txt
+__pycache__/
+*.pyc

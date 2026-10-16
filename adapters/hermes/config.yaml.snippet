@@ -1,0 +1,11 @@
+# zigmem -> Hermes (phase 7). Documented only: Hermes is not runnable on the dev box (the ~/.local/bin/hermes wrapper
+# points at ~/.hermes/hermes-agent/venv, which does not exist). Paste into ~/.hermes/config.yaml yourself.
+# zigmem never symlinks into hermes-agent, never edits memory.provider, and refuses a `Bearer local` placeholder token.
+mcp_servers:
+  zigmem:
+    url: "http://127.0.0.1:8470/mcp"
+    headers:
+      Authorization: "Bearer <contents of ~/.config/zigmem/hermes.token>"
+# Alternative: a Hermes memory plugin that speaks zigmem's v1 HTTP shape can point at http://127.0.0.1:8470
+# (/v1/recall /v1/capture /v1/search/memories /v1/search/conversations /v1/session/end) with
+# Authorization: Bearer <token>. We install no such plugin.
